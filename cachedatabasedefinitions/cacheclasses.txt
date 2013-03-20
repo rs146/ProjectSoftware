@@ -1,0 +1,255 @@
+Class Database.Domain Extends %Persistent [ Owner = _SYSTEM, SqlTableName = Domain ]
+{
+
+Property domainName As %String;
+
+Index primaryKey On domainName [ IdKey, PrimaryKey, Unique ];
+
+Property class As %String;
+
+Property adminContact As %String;
+
+Property serial As %Integer;
+
+Property refresh As %Integer;
+
+Property retry As %Integer;
+
+Property expire As %Integer;
+
+Property ttl As %Integer;
+
+Relationship dnsHostings As Database.DNSHosting [ Cardinality = many, Inverse = domain ];
+
+Projection Projection As %Projection.Java;
+
+Relationship domainData As Database.DomainData [ Cardinality = many, Inverse = domainName ];
+
+}
+
+Class Database.DNSHosting Extends %Persistent [ Owner = _SYSTEM, SqlTableName = DNSHosting ]
+{
+
+Property id As %Integer [ Required ];
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Relationship domain As Database.Domain [ Cardinality = one, Inverse = dnsHostings ];
+
+Index domainIndex On domain;
+
+Property allowUpdate As %Boolean;
+
+Property type As %String;
+
+Property allowQuery As %Boolean;
+
+Property allowTransfer As %Boolean;
+
+Relationship nameServer As Database.NameServer [ Cardinality = one, Inverse = dnsHostings ];
+
+Index nameServerIndex On nameServer;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.NameServer Extends %Persistent [ Owner = _SYSTEM, SqlTableName = NameServer ]
+{
+
+Property ttl As %Integer;
+
+Property class As %String;
+
+Property hostname As %String;
+
+Property ipAddress As %String;
+
+Index primaryKey On hostname [ IdKey, PrimaryKey, Unique ];
+
+Relationship dnsHostings As Database.DNSHosting [ Cardinality = many, Inverse = nameServer ];
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.DomainData Extends %Persistent [ Owner = _SYSTEM, SqlTableName = DomainData ]
+{
+
+Property id As %Integer;
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Index domainIndex On domainName;
+
+Relationship resourceRecord As Database.ResourceRecord [ Cardinality = one, Inverse = domainData ];
+
+Index resourceRecordIndex On resourceRecord;
+
+Projection Projection As %Projection.Java;
+
+Relationship domainName As Database.Domain [ Cardinality = one, Inverse = domainData ];
+
+}
+
+Class Database.ResourceRecord Extends %Persistent [ Owner = _SYSTEM, SqlTableName = ResourceRecord ]
+{
+
+Property id As %Integer;
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Property timeToLive As %Integer;
+
+Property hostName As %String;
+
+Property classOfData As %String;
+
+Relationship domainData As Database.DomainData [ Cardinality = many, Inverse = resourceRecord ];
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.FandRMapping Extends Database.ResourceRecord
+{
+
+Property type As %String;
+
+Relationship ipAssignments As Database.IPAssignment [ Cardinality = many, Inverse = fandRMapping ];
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.MX Extends Database.ResourceRecord
+{
+
+Property preference As %Integer;
+
+Projection Projection As %Projection.Java;
+
+Property srv As %Boolean;
+
+}
+
+Class Database.CNAME Extends Database.ResourceRecord
+{
+
+Property nickname As %String;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.TXT Extends Database.ResourceRecord
+{
+
+Property information As %String;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.SRV Extends Database.MX
+{
+
+Property service As %String;
+
+Property protocol As %String;
+
+Property name As %String;
+
+Property weight As %Integer;
+
+Property port As %Integer;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.IPAssignment Extends %Persistent [ Owner = _SYSTEM, SqlTableName = IPAssignment ]
+{
+
+Property id As %Integer;
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Relationship fandRMapping As Database.FandRMapping [ Cardinality = one, Inverse = ipAssignments ];
+
+Index fandRMappingIndex On fandRMapping;
+
+Relationship ipAddress As Database.IPAddress [ Cardinality = one, Inverse = ipAssignments ];
+
+Index ipAddressIndex On ipAddress;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.IPAddress Extends %Persistent [ Owner = _SYSTEM, SqlTableName = IPAddress ]
+{
+
+Property id As %Integer;
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Property address As %String;
+
+Property version As %String;
+
+Property type As %String;
+
+Relationship ipAssignments As Database.IPAssignment [ Cardinality = many, Inverse = ipAddress ];
+
+Relationship subnet As Database.Subnet [ Cardinality = one, Inverse = ipAddresses ];
+
+Index subnetIndex On subnet;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.Subnet Extends %Persistent [ Owner = _SYSTEM, SqlTableName = Subnet ]
+{
+
+Property id As %Integer;
+
+Property subname As %String;
+
+Property subnetMask As %String;
+
+Property location As %String;
+
+Property subnetAddr As %String;
+
+Relationship ipAddresses As Database.IPAddress [ Cardinality = many, Inverse = subnet ];
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Relationship network As Database.Network [ Cardinality = one, Inverse = subnets ];
+
+Index networkIndex On network;
+
+Projection Projection As %Projection.Java;
+
+}
+
+Class Database.Network Extends %Persistent [ Owner = _SYSTEM, SqlTableName = Network ]
+{
+
+Property id As %Integer;
+
+Index primaryKey On id [ IdKey, PrimaryKey, Unique ];
+
+Property networkAddr As %String;
+
+Property netname As %String;
+
+Property version As %String;
+
+Relationship subnets As Database.Subnet [ Cardinality = many, Inverse = network ];
+
+Projection Projection As %Projection.Java;
+
+}
