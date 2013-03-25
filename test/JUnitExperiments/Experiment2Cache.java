@@ -68,10 +68,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval2() {
         for (int i = 9; i < 11; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -83,10 +82,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval5() {
         for (int i = 9; i < 14; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -98,10 +96,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval10() {
         for (int i = 9; i < 19; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -113,10 +110,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval25() {
         for (int i = 9; i < 34; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -128,10 +124,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval50() {
         for (int i = 9; i < 59; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -143,10 +138,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval100() {
         for (int i = 9; i < 109; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -158,10 +152,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval1000() {
         for (int i = 9; i < 1009; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -173,10 +166,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval10000() {
         for (int i = 9; i < 10009; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
@@ -188,10 +180,9 @@ public class Experiment2Cache {
     @Test
     public void retrieval100000() {
         for (int i = 9; i < 100009; i++) {
-            IPAddress ip = null;
             List<IPAddress> ipAddresses = new ArrayList<IPAddress>();
             try {
-                ip = (IPAddress) IPAddress._open(db, new Id(i));
+                IPAddress ip = (IPAddress) IPAddress._open(db, new Id(i));
                 ipAddresses.add(ip);
             } catch (CacheException ex) {
                 Logger.getLogger(Experiment2Cache.class.getName())
