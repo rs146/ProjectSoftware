@@ -1,8 +1,9 @@
-This Java software package relies on the existence of an Intersystems Cache database with 
-the created database classes. Because the examiners may not be able to install a Cache 
-database and test this software system, a Video has been provided with the electronic media
-sent with this Project. The Video will show the execution of the Java software package and
-all the database classes in the Cache database.
+This Java software package relies on the existence of an Intersystems Cache 
+database with the created database classes. Because the examiners may not be
+able to install a Cache database and test this software system, a Video has 
+been provided with the electronic media sent with this Project. The Video 
+will show the execution of the Java software package and all the database 
+classes in the Cache database.
 
 All dummy data that was inserted into the Cache database was done by means of the
 two Java files in the Package: AddDatatoDb. The NewZone.java file contains a 
